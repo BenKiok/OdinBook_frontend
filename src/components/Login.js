@@ -16,8 +16,8 @@ function Login() {
         </div>
         <div className='form'>
           <form>
-            <input type='text' placeholder='Username'/>
-            <input type='password' placeholder='Password'/>
+            <input type='text' placeholder='Username' required/>
+            <input type='password' placeholder='Password' required/>
             <button className='auth-btn'>Log In</button>
           </form>
           <button className='auth-btn fb-auth'>Log in with Facebook</button>
@@ -34,9 +34,9 @@ function Login() {
         </div>
         <div className='form'>
           <form>
-            <input type='text' placeholder='Username'/>
-            <input type='password' placeholder='Password'/>
-            <input type='password' placeholder='Confirm password'/>
+            <input type='text' placeholder='Username' required/>
+            <input type='password' placeholder='Password' required/>
+            <input type='password' placeholder='Confirm password' required/>
             <button className='auth-btn'>Sign Up</button>
           </form>
           <button className='auth-btn fb-auth'>Sign up with Facebook</button>
