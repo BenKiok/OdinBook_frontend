@@ -20,6 +20,10 @@ function Login(props) {
       return;
     }
 
+    if (password.length < 1) {
+      return;
+    }
+
     userData = await fetch('http://localhost:3001/api/' + string,
       {
         method: 'POST',
