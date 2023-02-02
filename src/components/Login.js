@@ -15,6 +15,8 @@ function Login(props) {
         userData;
     
     if (password !== confirmPassword) {
+      event.target.parentNode.childNodes[1].value = '';
+      event.target.parentNode.childNodes[2].value = '';
       return;
     }
 
