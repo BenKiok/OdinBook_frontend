@@ -1,10 +1,36 @@
 import {useState} from 'react';
 import '../stylesheets/Login.css';
 
-function Login() {
+function Login(props) {
   const [loginBool, setLoginBool] = useState(true);
   const toggleLoginBool = () => {
     setLoginBool(!loginBool);
+  };
+  const fetchLoginData = async (event, string, func) => {
+    event.preventDefault();
+
+    let username = event.target.parentNode.childNodes[0].value,
+        password = event.target.parentNode.childNodes[1].value,
+        userData = await fetch('http://localhost:3001/api/' + string,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          username,
+          password
+        })
+      }
+    )
+    .then(res => res.json())
+    .then(data => data)
+    .catch(err => console.log(err));
+
+    if (userData) {
+      console.log(userData);
+      func(userData);
+    }
   }
 
   if (loginBool) {
@@ -18,7 +44,7 @@ function Login() {
           <form>
             <input type='text' placeholder='Username' required/>
             <input type='password' placeholder='Password' required/>
-            <button className='auth-btn'>Log In</button>
+            <button className='auth-btn' onClick={(e) => fetchLoginData(e, 'login', props.setData)}>Log In</button>
           </form>
           <button className='auth-btn fb-auth'>Log in with Facebook</button>
           <button className='form-switch-btn' onClick={toggleLoginBool}>Create new account</button>
