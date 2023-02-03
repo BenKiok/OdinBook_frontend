@@ -20,8 +20,8 @@ function Nav() {
         </div>
         <div className='nav-other'>
           <FontAwesomeIcon className='round icon' icon={solid('plus')}/>
-          <FontAwesomeIcon className='round icon' icon={solid('comment-dots')}/>
           <FontAwesomeIcon className='round icon' icon={solid('bell')}/>
+          <FontAwesomeIcon className='round icon' icon={solid('right-from-bracket')}/>
         </div>
       </nav>
     </div>
