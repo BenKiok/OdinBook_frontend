@@ -1,6 +1,7 @@
 import {useState} from 'react';
 import Login from './Login';
 import Nav from './Nav';
+import Timeline from './Timeline';
 import '../stylesheets/reset.css';
 import '../stylesheets/App.css';
 
@@ -17,6 +18,7 @@ function App() {
     return (
       <div className="App">
         <Nav logout={setUserData}/>
+        <Timeline auth={userData}/>
       </div>
     );
   }
