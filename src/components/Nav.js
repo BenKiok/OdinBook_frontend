@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import '../stylesheets/Nav.css';
 
-function Nav() { 
+function Nav(props) { 
   return (
     <div className='nav'>
       <nav>
@@ -21,7 +21,7 @@ function Nav() {
         <div className='nav-other'>
           <FontAwesomeIcon className='round icon' icon={solid('plus')}/>
           <FontAwesomeIcon className='round icon' icon={solid('bell')}/>
-          <FontAwesomeIcon className='round icon' icon={solid('right-from-bracket')}/>
+          <FontAwesomeIcon className='round icon' icon={solid('right-from-bracket')} onClick={() => props.logout(null)}/>
         </div>
       </nav>
     </div>

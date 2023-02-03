@@ -16,7 +16,7 @@ function App() {
   } else {
     return (
       <div className="App">
-        <Nav/>
+        <Nav logout={setUserData}/>
       </div>
     );
   }
