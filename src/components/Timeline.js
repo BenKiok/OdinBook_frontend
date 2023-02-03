@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import Post from './Post.js';
 
 function Timeline(props) {
   const [posts, setPosts] = useState(null);
@@ -14,16 +15,22 @@ function Timeline(props) {
     .then(data => {
       let arr = [];
       data.forEach(post => {
-        arr.push(<h2 key={data.indexOf(post)}>{post.body}</h2>)
+        arr.push(<Post key={post._id} post={post} user={props.auth.user}/>);
       });
       setPosts(arr);
     })
     .catch(err => console.log(err));
   }
   
-  fetchPosts(props.auth);
+  if (!posts) {
+    fetchPosts(props.auth);
+  }
 
-  return posts;
+  return (
+    <div className='timeline'>
+      {posts}
+    </div>
+  );
 }
 
 export default Timeline;
