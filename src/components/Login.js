@@ -41,7 +41,6 @@ function Login(props) {
     .catch(err => console.log(err));
 
     if (userData) {
-      console.log(userData);
       func(userData);
     }
   }
