@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import PostForm from './PostForm.js';
 import Post from './Post.js';
 import '../stylesheets/Timeline.css';
 
@@ -29,6 +30,7 @@ function Timeline(props) {
 
   return (
     <div className='timeline'>
+      <PostForm/>
       {posts}
     </div>
   );
