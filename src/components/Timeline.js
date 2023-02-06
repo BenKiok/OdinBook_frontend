@@ -1,5 +1,6 @@
 import {useState} from 'react';
 import Post from './Post.js';
+import '../stylesheets/Timeline.css';
 
 function Timeline(props) {
   const [posts, setPosts] = useState(null);
