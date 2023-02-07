@@ -1,6 +1,11 @@
 function PostForm(props) {
   const pushNewPost = async event => {
+    let body = event.target.parentNode.querySelector('textarea').value;
     event.preventDefault();
+
+    if (!body.length) {
+      return;
+    }
 
     await fetch('http://localhost:3001/api/' + props.auth.user._id + '/new/post', 
       {
@@ -10,7 +15,7 @@ function PostForm(props) {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          'body': event.target.parentNode.querySelector('textarea').value
+          body
         })
       }
     )
