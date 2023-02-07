@@ -9,7 +9,7 @@ function Timeline(props) {
     await fetch('http://localhost:3001/api/' + data.user._id + '/timeline',
       {
         headers: {
-          'Authorization': 'Bearer ' + data.token
+          'Authorization': 'Bearer ' + data.token,
         }
       }
     )
@@ -30,7 +30,8 @@ function Timeline(props) {
 
   return (
     <div className='timeline'>
-      <PostForm/>
+      {/* TODO: complete new post functionality/posts state update */}
+      <PostForm auth={props.auth} update={fetchPosts}/>
       {posts}
     </div>
   );
