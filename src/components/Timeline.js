@@ -17,7 +17,7 @@ function Timeline(props) {
     .then(data => {
       let arr = [];
       data.forEach(post => {
-        arr.push(<Post key={post._id} post={post} user={props.auth.user}/>);
+        arr.push(<Post key={post._id} post={post} auth={props.auth}/>);
       });
       setPosts(arr);
     })
