@@ -1,33 +1,6 @@
 import {useState} from "react";
 
 function Post(props) {
-  const hasUserLiked = () => {
-    let arr = props.post.likedBy;
-    for (let i = 0; i < arr.length; i++) {
-      if (arr[i] === props.auth.user._id)
-        return true;
-    }
-    
-    return false;
-  }
-  const togglePostLike = async bool => {
-    await fetch(
-      'http://localhost:3001/api/post/' + props.post._id + (bool ? '/unlikefrom/' : '/likefrom/') + props.auth.user._id,
-      {
-        method: 'PUT',
-        headers: {
-          'Authorization': 'Bearer ' + props.auth.token,
-        }
-      }
-    )
-    .then(res => res.json())
-    .then(data => data)
-    .catch(err => console.log(err));
-  }
-  const toggleLike = () => {
-    setLike(!isLiked);
-    togglePostLike(isLiked);
-  }
   const [isLiked, setLike] = useState(hasUserLiked());
 
   return (
@@ -72,6 +45,34 @@ function Post(props) {
       </div>
     </div>
   )
+
+  function hasUserLiked() {
+    let arr = props.post.likedBy;
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i] === props.auth.user._id)
+        return true;
+    }
+    
+    return false;
+  }
+  async function togglePostLike(bool) {
+    await fetch(
+      'http://localhost:3001/api/post/' + props.post._id + (bool ? '/unlikefrom/' : '/likefrom/') + props.auth.user._id,
+      {
+        method: 'PUT',
+        headers: {
+          'Authorization': 'Bearer ' + props.auth.token,
+        }
+      }
+    )
+    .then(res => res.json())
+    .then(data => data)
+    .catch(err => console.log(err));
+  }
+  function toggleLike() {
+    setLike(!isLiked);
+    togglePostLike(isLiked);
+  }
 }
 
 export default Post;

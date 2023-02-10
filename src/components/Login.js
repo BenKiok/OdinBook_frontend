@@ -3,48 +3,7 @@ import '../stylesheets/Login.css';
 
 function Login(props) {
   const [loginBool, setLoginBool] = useState(true);
-  const toggleLoginBool = () => {
-    setLoginBool(!loginBool);
-  };
-  const fetchUserData = async (event, string, func) => {
-    event.preventDefault();
-
-    let username = event.target.parentNode.childNodes[0].value,
-        password = event.target.parentNode.childNodes[1].value,
-        confirmPassword = (string === 'signup' ? event.target.parentNode.childNodes[2].value : password),
-        userData;
-    
-    if (password !== confirmPassword) {
-      event.target.parentNode.childNodes[1].value = '';
-      event.target.parentNode.childNodes[2].value = '';
-      return;
-    }
-
-    if (password.length < 1) {
-      return;
-    }
-
-    userData = await fetch('http://localhost:3001/api/' + string,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          username,
-          password
-        })
-      }
-    )
-    .then(res => res.json())
-    .then(data => data)
-    .catch(err => console.log(err));
-
-    if (userData) {
-      func(userData);
-    }
-  }
-
+  
   if (loginBool) {
     return (
       <div className='auth login'>
@@ -82,6 +41,48 @@ function Login(props) {
         </div>
       </div>
     )
+  }
+
+  function toggleLoginBool() {
+    setLoginBool(!loginBool);
+  }
+  async function fetchUserData(event, string, func) {
+    event.preventDefault();
+
+    let username = event.target.parentNode.childNodes[0].value,
+        password = event.target.parentNode.childNodes[1].value,
+        confirmPassword = (string === 'signup' ? event.target.parentNode.childNodes[2].value : password),
+        userData;
+    
+    if (password !== confirmPassword) {
+      event.target.parentNode.childNodes[1].value = '';
+      event.target.parentNode.childNodes[2].value = '';
+      return;
+    }
+
+    if (password.length < 1) {
+      return;
+    }
+
+    userData = await fetch('http://localhost:3001/api/' + string,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          username,
+          password
+        })
+      }
+    )
+    .then(res => res.json())
+    .then(data => data)
+    .catch(err => console.log(err));
+
+    if (userData) {
+      func(userData);
+    }
   }
 }
 

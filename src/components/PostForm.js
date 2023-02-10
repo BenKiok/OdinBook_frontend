@@ -1,5 +1,13 @@
 function PostForm(props) {
-  const pushNewPost = async event => {
+  return (
+    <form className='post form'>
+      <i className='icon round avatar'>me</i>
+      <textarea type='text' name='body' placeholder="What's on your mind?"></textarea>
+      <button onClick={e => pushNewPost(e)}>Post</button>
+    </form>
+  )
+
+  async function pushNewPost(event) {
     let body = event.target.parentNode.querySelector('textarea').value;
     event.preventDefault();
 
@@ -23,14 +31,6 @@ function PostForm(props) {
 
     props.update(props.auth);
   }
-
-  return (
-    <form className='post form'>
-      <i className='icon round avatar'>me</i>
-      <textarea type='text' name='body' placeholder="What's on your mind?"></textarea>
-      <button onClick={e => pushNewPost(e)}>Post</button>
-    </form>
-  );
 }
 
 export default PostForm;

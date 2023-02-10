@@ -5,7 +5,20 @@ import '../stylesheets/Timeline.css';
 
 function Timeline(props) {
   const [posts, setPosts] = useState(null);
-  const fetchPosts = async data => {
+  
+  if (!posts) {
+    fetchPosts(props.auth);
+  }
+
+  return (
+    <div className='timeline'>
+      {/* TODO: complete new post functionality/posts state update */}
+      <PostForm auth={props.auth} update={fetchPosts}/>
+      {posts}
+    </div>
+  )
+
+  async function fetchPosts(data) {
     await fetch('http://localhost:3001/api/' + data.user._id + '/timeline',
       {
         headers: {
@@ -23,18 +36,6 @@ function Timeline(props) {
     })
     .catch(err => console.log(err));
   }
-  
-  if (!posts) {
-    fetchPosts(props.auth);
-  }
-
-  return (
-    <div className='timeline'>
-      {/* TODO: complete new post functionality/posts state update */}
-      <PostForm auth={props.auth} update={fetchPosts}/>
-      {posts}
-    </div>
-  );
 }
 
 export default Timeline;
