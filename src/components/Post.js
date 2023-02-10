@@ -29,12 +29,6 @@ function Post(props) {
     togglePostLike(isLiked);
   }
   const [isLiked, setLike] = useState(hasUserLiked());
-  /*
-    like post functionality checklist:
-     - function that runs fetch PUT request to add/remove current user to likedBy array according to isLiked
-     - conditional that changes like icon according to isLiked
-     - function that checks if user is on likedBy array
-  */
 
   return (
     <div className='post'>
