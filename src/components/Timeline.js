@@ -3,6 +3,7 @@ import PostForm from './PostForm.js';
 import Post from './Post.js';
 import '../stylesheets/Timeline.css';
 import '../stylesheets/Post.css';
+import '../stylesheets/Comment.css';
 
 function Timeline(props) {
   const [posts, setPosts] = useState(null);
@@ -28,6 +29,13 @@ function Timeline(props) {
           </svg>
         </div>
         <Post key={focusedPost._id} post={focusedPost} auth={props.auth} focus={focusPost}/>
+        <div className='commentForm'>
+          <form className='post form'>
+            <i className='icon round avatar'>me</i>
+            <input type='text' name='body' placeholder='Write a comment...'/>
+          </form>
+          <p>Press Enter to post.</p>
+        </div>
       </div>
     )
   } else {

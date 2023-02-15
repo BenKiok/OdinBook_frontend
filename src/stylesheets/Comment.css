@@ -1,0 +1,27 @@
+.commentForm {
+  background: #242527;
+  border-radius: 0 0 8px 8px;
+  padding-bottom: 6px;
+}
+
+.commentForm .post {
+  padding: 0 12px;
+  margin-bottom: 0;
+  border-radius: 0;
+  gap: 0;
+}
+
+.commentForm input[type='text'] {
+  margin-left: 15px;
+  background: #393b3c;
+  color: #e5e6eb;
+  border: none;
+  border-radius: 24px;
+  font-size: 1rem;
+  padding: 6px 12px;
+}
+
+.commentForm p {
+  font-size: 13px;
+  margin: 3px 0 0 88px;
+}
