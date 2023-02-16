@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import PostForm from './PostForm.js';
 import Post from './Post.js';
 import '../stylesheets/Timeline.css';
@@ -9,9 +9,9 @@ function Timeline(props) {
   const [posts, setPosts] = useState(null);
   const [focusedPost, focusPost] = useState(null);
   
-  if (!posts) {
+  useEffect(() => {
     fetchPosts(props.auth);
-  }
+  });
 
   if (focusedPost) {
     return (
