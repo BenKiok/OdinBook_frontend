@@ -29,6 +29,7 @@ function PostForm(props) {
     )
     .catch(err => console.log(err));
 
+    event.target.parentNode.querySelector('textarea').value = '';
     props.update(props.auth);
   }
 }
