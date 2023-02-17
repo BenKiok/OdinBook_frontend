@@ -1,0 +1,37 @@
+function CommentForm(props) {
+  return (
+    <div className='commentForm'>
+      <form className='post form' onSubmit={e => pushNewComment(e, props.post, props.refreshPost)}>
+        <i className='icon round avatar'>me</i>
+        <input type='text' name='body' placeholder='Write a comment...'/>
+      </form>
+      <p>Press Enter to post.</p>
+    </div>
+  )
+  async function pushNewComment(event, post) {
+    let body = event.target.parentNode.querySelector('input').value;
+    event.preventDefault();
+
+    if (!body.length) {
+      return false;
+    }
+    
+    await fetch('http://localhost:3001/api/' + props.auth.user._id + '/new/comment/for_post/' + post._id, 
+      {
+        method: 'POST',
+        headers: {
+          'Authorization': 'Bearer ' + props.auth.token,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          body
+        })
+      }
+    )
+    .catch(err => console.log(err));
+    
+    event.target.parentNode.querySelector('input').value = '';
+  }
+}
+
+export default CommentForm;
