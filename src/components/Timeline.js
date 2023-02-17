@@ -36,7 +36,6 @@ function Timeline(props) {
   } else {
     return (
       <div className='timeline'>
-        {/* TODO: complete new post functionality/posts state update */}
         <PostForm auth={props.auth} update={fetchPosts}/>
         {posts}
       </div>
