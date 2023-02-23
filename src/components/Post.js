@@ -20,7 +20,7 @@ function Post(props) {
           <p>{props.post.likedBy.length ? props.post.likedBy.length : ''}</p>
         </div>
         <div className='comments'>
-          <p>{props.post.comments.length ? props.post.comments.length + ' comment' + (props.post.comments.length ? 's' : '') : ''}</p>
+          <p>{props.post.comments.length ? props.post.comments.length + ' comment' + ((props.post.comments.length > 1) ? 's' : '') : ''}</p>
         </div>
       </div>
       <div className='post-react'>
