@@ -8,7 +8,7 @@ function CommentForm(props) {
       <p>Press Enter to post.</p>
     </div>
   )
-  async function pushNewComment(event, post) {
+  async function pushNewComment(event, post, func) {
     let body = event.target.parentNode.querySelector('input').value;
     event.preventDefault();
 
@@ -31,6 +31,17 @@ function CommentForm(props) {
     .catch(err => console.log(err));
     
     event.target.parentNode.querySelector('input').value = '';
+    
+    await fetch('hhtp://localhost:3001/api/' + post._id,
+      {
+        headers: {
+          'Authorization': 'Bearer ' + props.auth.token,
+        }
+      }
+    )
+    .then(res => res.json())
+    .then(data => func(data))
+    .catch(err => console.log(err));
   }
 }
 

@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react';
 import CommentForm from './CommentForm.js';
 import PostForm from './PostForm.js';
+import Comment from './Comment.js';
 import Post from './Post.js';
 import '../stylesheets/Timeline.css';
 import '../stylesheets/Post.css';
@@ -9,6 +10,7 @@ import '../stylesheets/Comment.css';
 function Timeline(props) {
   const [posts, setPosts] = useState(null);
   const [focusedPost, focusPost] = useState(null);
+  const [postComments, setComments] = useState(null);
   
   useEffect(() => {
     fetchPosts(props.auth);
@@ -29,8 +31,9 @@ function Timeline(props) {
             <path fill='currentColor' d='M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3 265.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256 310.6 150.6z'></path>
           </svg>
         </div>
-        <Post key={focusedPost._id} post={focusedPost} auth={props.auth} focus={focusPost}/>
-        <CommentForm auth={props.auth} post={focusedPost} refreshPost={focusPost}/>
+        <Post key={focusedPost._id} post={focusedPost} auth={props.auth} focus={setPostAndComments}/>
+        {postComments}
+        <CommentForm auth={props.auth} post={focusedPost} refreshPost={setPostAndComments}/>
       </div>
     )
   } else {
@@ -54,11 +57,45 @@ function Timeline(props) {
     .then(data => {
       let arr = [];
       data.forEach(post => {
-        arr.push(<Post key={post._id} post={post} auth={props.auth} focus={focusPost}/>);
+        arr.push(<Post key={post._id} post={post} auth={props.auth} focus={setPostAndComments}/>);
       });
       setPosts(arr);
     })
     .catch(err => console.log(err));
+  }
+  function fetchPostComments(post) {
+    let arr1 = addUserToComments(props.auth.token, post.comments),
+        arr2 = []
+    arr1.forEach(comment => {
+      arr2.push(<Comment key={comment._id} comment={comment}/>);
+    });
+    setComments(arr2);
+  }
+  function setPostAndComments(post) {
+    focusPost(post);
+    fetchPostComments(post);
+  }
+  function addUserToComments(token, arr) {
+    let comments = arr;
+
+    if (comments) {
+      comments.forEach(async comment => {
+        comment.user = await fetch('http://localhost:3001/api/getuser/' + comment.user,
+          {
+            headers: {
+              'Authorization': 'Bearer ' + token,
+            }
+          }
+        )
+        .then(res => res.json())
+        .then(data => data)
+        .catch(err => console.log(err));
+      });
+      
+      return comments;
+    }
+
+    return [];
   }
 }
 

@@ -25,3 +25,57 @@
   font-size: 13px;
   margin: 3px 0 0 88px;
 }
+
+.comment {
+  background: #242527;
+  padding: 4px 15px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: 1fr auto;
+}
+
+.comment .sm {
+  width: 32px;
+  height: 32px;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.comment .body {
+  margin-left: 3px;
+  padding: 8px 12px;
+  background: #393b3c;
+  border-radius: 18px;
+}
+
+.comment .author {
+  font-size: 0.85rem;
+  line-height: 1.1;
+}
+
+.comment .text {
+  font-size: 0.98rem;
+  line-height: 1.1;
+}
+
+.footer {
+  grid-column: 2 / end;
+  display: flex;
+  padding-left: 15px;
+}
+
+.footer-link {
+  color: #B0B3B8;
+  font-weight: bold;
+  font-size: 0.75rem;
+  margin-right: 15px;
+}
+
+.footer-link:last-child {
+  font-weight: normal;
+}
+
+.footer-link:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
