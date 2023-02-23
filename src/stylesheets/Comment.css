@@ -1,18 +1,25 @@
+.sm {
+  width: 32px;
+  height: 32px;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
 .commentForm {
   background: #242527;
   border-radius: 0 0 8px 8px;
-  padding-bottom: 6px;
+  padding: 12px 0 6px 0;
 }
 
 .commentForm .post {
-  padding: 0 12px;
+  padding: 0 15px;
   margin-bottom: 0;
   border-radius: 0;
   gap: 0;
 }
 
 .commentForm input[type='text'] {
-  margin-left: 15px;
+  margin-left: 3px;
   background: #393b3c;
   color: #e5e6eb;
   border: none;
@@ -32,13 +39,6 @@
   display: grid;
   grid-template-columns: auto 1fr;
   grid-template-rows: 1fr auto;
-}
-
-.comment .sm {
-  width: 32px;
-  height: 32px;
-  font-size: 0.8rem;
-  text-align: center;
 }
 
 .comment .body {

@@ -2,7 +2,7 @@ function CommentForm(props) {
   return (
     <div className='commentForm'>
       <form className='post form' onSubmit={e => pushNewComment(e, props.post, props.refreshPost)}>
-        <i className='icon round avatar'>me</i>
+        <i className='icon round avatar sm'>me</i>
         <input type='text' name='body' placeholder='Write a comment...'/>
       </form>
       <p>Press Enter to post.</p>
