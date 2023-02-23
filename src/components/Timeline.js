@@ -65,7 +65,7 @@ function Timeline(props) {
   }
   function fetchPostComments(post) {
     let arr1 = addUserToComments(props.auth.token, post.comments),
-        arr2 = []
+        arr2 = [];
     arr1.forEach(comment => {
       arr2.push(<Comment key={comment._id} comment={comment}/>);
     });
