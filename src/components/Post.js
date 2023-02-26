@@ -11,7 +11,6 @@ function Post(props) {
         <p>{props.post.date}</p>
       </div>
       <h3>{props.post.body}</h3>
-      {/* TODO: add conditional to hide div.post-numbers when there are no comments/likes */}
       <div className={((props.post.likedBy.length || props.post.comments.length) ? 'post-numbers' : 'post-numbers hidden')}>
         <div className='likes'>
           <svg aria-hidden='true' focusable='false' data-prefix='fas' data-icon='thumbs-up' className={props.post.likedBy.length ? 'svg-inline--fa fa-thumbs-up' : 'svg-inline--fa fa-thumbs-up hidden'} role='img' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'>
