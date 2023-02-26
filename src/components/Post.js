@@ -7,7 +7,7 @@ function Post(props) {
     <div className='post'>
       <i className='icon round avatar'>ppl</i>
       <div className='post-meta'>
-        <p>{props.auth.user.username}</p>
+        <p>{props.post.user.username}</p>
         <p>{props.post.date}</p>
       </div>
       <h3>{props.post.body}</h3>
